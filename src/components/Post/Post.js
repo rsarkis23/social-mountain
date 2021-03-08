@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import ProfileIcon from 'react-icons/lib/md/person-outline';
-import ReplyIcon from 'react-icons/lib/md/chat-bubble-outline';
-import FavoriteIcon from 'react-icons/lib/md/favorite-outline';
-import MessageIcon from 'react-icons/lib/md/mail-outline';
-import MasterControlIcon from 'react-icons/lib/md/more-vert';
+import React, { Component } from 'react'
+import ProfileIcon from 'react-icons/lib/md/person-outline'
+import ReplyIcon from 'react-icons/lib/md/chat-bubble-outline'
+import FavoriteIcon from 'react-icons/lib/md/favorite-outline'
+import MessageIcon from 'react-icons/lib/md/mail-outline'
+import MasterControlIcon from 'react-icons/lib/md/more-vert'
 
-import './Post.css';
+import './Post.css'
 
-import Edit from './Edit/Edit';
+import Edit from './Edit/Edit'
 
 //////////////////////////////////////////////////////// THIS COMPONENT IS BEING RENDERED IN THE *APP* COMPONENT
 
@@ -20,32 +20,32 @@ export default class Post extends Component {
       showMasterMenu: false
     };
 
-    this.hideEdit = this.hideEdit.bind( this );
-    this.showEdit = this.showEdit.bind( this );
-    this.toggleMasterMenu = this.toggleMasterMenu.bind( this );
-    this.hideMasterMenu = this.hideMasterMenu.bind( this );
+    this.hideEdit = this.hideEdit.bind( this )
+    this.showEdit = this.showEdit.bind( this )
+    this.toggleMasterMenu = this.toggleMasterMenu.bind( this )
+    this.hideMasterMenu = this.hideMasterMenu.bind( this )
   }
 
   // This puts the post into EDIT mode when the EDIT button is clicked from the drop-down
   showEdit() {
-    this.setState({ editing: true, showMasterMenu: false });
+    this.setState({ editing: true, showMasterMenu: false })
   }
 
   // This puts the post back into normal viewing mode when the CANCEL button is clicked
   // This method is passed down to the <Edit /> component via props
   hideEdit() {
-    this.setState({ editing: false });
+    this.setState({ editing: false })
   }
 
   // This toggles the drop-down when the three dots in the top right corner of a post are clicked
   toggleMasterMenu() {
-    this.setState({ showMasterMenu: !this.state.showMasterMenu });
+    this.setState({ showMasterMenu: !this.state.showMasterMenu })
   }
 
   // This hides the drop-down when the post is clicked anywhere
   hideMasterMenu() {
     if ( this.state.showMasterMenu === true ) {
-      this.setState({ showMasterMenu: false });
+      this.setState({ showMasterMenu: false })
     }
   }
 
@@ -53,7 +53,8 @@ export default class Post extends Component {
     // This is destructuring! You can also think of it as being written as so:
       // const editing = this.state.editing
       // const showMasterMenu = this.state.showMasterMenu
-    const { editing, showMasterMenu } = this.state;
+    const { editing, showMasterMenu } = this.state
+    const { text, date } = this.props
 
     return (
       // Main body of post
@@ -79,7 +80,7 @@ export default class Post extends Component {
           <span className="Post__name">DevMountain</span>
           <span className="Post__handle">@DevMountain</span>
 
-          <span className="Post__date">- POST DATE GOES HERE</span>
+          <span className="Post__date">- { date }</span>
         </div>
 
         {/* This is where the text goes. Notice the turnary statement. The turnary statement decides to display either the text OR the editor view
@@ -98,7 +99,7 @@ export default class Post extends Component {
               <Edit text=""
                     hideEdit={ this.hideEdit } />
             :
-              <span className="Post__text">POST TEXT GOES HERE</span>
+              <span className="Post__text">{ text }</span>
           }
         </div>
 
